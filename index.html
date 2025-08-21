@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Tracker - Support & Help</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            padding: 60px 0;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .app-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: -30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3 {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .steps {
+            counter-reset: step-counter;
+        }
+
+        .step {
+            counter-increment: step-counter;
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .privacy-points {
+            list-style: none;
+        }
+
+        .privacy-points li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .privacy-points li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .alert {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .alert-icon {
+            color: #2196f3;
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .contact-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .github { color: #333; }
+        .email { color: #ea4335; }
+        .bug { color: #ff6b6b; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 1000px;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .main-content {
+                padding: 20px;
+                margin-top: -20px;
+            }
+            .section {
+                padding: 20px;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="app-icon">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <h1>Symptom Tracker</h1>
+            <p>Secure. Private. Professional health symptom tracking for VA medical reporting.</p>
+        </header>
+
+        <main class="main-content">
+            <!-- About Section -->
+            <section class="section">
+                <h2>
+                    <i class="fas fa-info-circle"></i>
+                    About Symptom Tracker
+                </h2>
+                <p>Symptom Tracker is a secure, privacy-focused iOS application designed specifically for tracking daily health symptoms for medical reporting, particularly for Veterans Affairs (VA) documentation. The app provides comprehensive logging, trend analysis, and professional PDF exports while maintaining complete user privacy.</p>
+                
+                <div class="alert">
+                    <i class="fas fa-shield-alt alert-icon"></i>
+                    <strong>100% Private:</strong> All your health data stays on your device. No data collection, no cloud storage, no third-party access.
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="section">
+                <h2>
+                    <i class="fas fa-star"></i>
+                    Key Features
+                </h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h3>Severity Tracking</h3>
+                        <p>Rate all symptoms on a comprehensive 0-10 severity scale with intuitive sliders for precise tracking.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3>Draft Saving</h3>
+                        <p>Save your progress throughout the day and edit previous entries. Never lose your symptom data.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>Professional PDF Export</h3>
+                        <p>Export individual logs, summary reports, and custom date ranges in professional PDF format.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Trend Analysis</h3>
+                        <p>View interactive line charts showing symptom patterns across daily, weekly, and monthly timeframes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>Biometric Security</h3>
+                        <p>Protect your health data with PIN authentication and biometric access (Face ID/Touch ID).</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Native iOS App</h3>
+                        <p>Built specifically for iOS with native performance, accessibility, and seamless user experience.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How to Use Section -->
+            <section class="section">
+                <h2>
+                    <i class="fas fa-book-open"></i>
+                    How to Use
+                </h2>
+                <div class="steps">
+                    <div class="step">
+                        <h3>Set Up Security</h3>
+                        <p>On first launch, create a 4-digit PIN to secure your health data. Enable biometric authentication for quick access.</p>
+                    </div>
+                    <div class="step">
+                        <h3>Log Daily Symptoms</h3>
+                        <p>Navigate to "Daily Log" and use the severity sliders to rate each symptom from 0-10. Add detailed notes for context.</p>
+                    </div>
+                    <div class="step">
+                        <h3>Save and Edit</h3>
+                        <p>Save drafts throughout the day to build complete entries. Edit previous entries by tapping them in the "Entry List".</p>
+                    </div>
+                    <div class="step">
+                        <h3>Analyze Trends</h3>
+                        <p>View the "Summary" tab to see statistics and interactive charts showing your symptom patterns over time.</p>
+                    </div>
+                    <div class="step">
+                        <h3>Export for Medical Use</h3>
+                        <p>Use the "Export" tab to generate professional PDF reports for your healthcare provider or VA appointments.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Privacy Section -->
+            <section class="section">
+                <h2>
+                    <i class="fas fa-shield-alt"></i>
+                    Privacy & Security
+                </h2>
+                <h3>Your Health Data Privacy is Our Top Priority</h3>
+                <ul class="privacy-points">
+                    <li>All data is stored locally on your device only</li>
+                    <li>No data is transmitted to external servers or cloud services</li>
+                    <li>No analytics, tracking, or data collection of any kind</li>
+                    <li>App is protected with PIN and biometric authentication</li>
+                    <li>Data is encrypted using iOS built-in security features</li>
+                    <li>You have complete control over your health information</li>
+                    <li>No third-party data sharing or advertising</li>
+                    <li>No personal health information ever leaves your device</li>
+                    <li>No cloud storage or automatic backup (manual export only)</li>
+                </ul>
+
+                <div class="alert">
+                    <i class="fas fa-user-shield alert-icon"></i>
+                    <strong>Data Ownership:</strong> You own and control 100% of your health data. We never see, access, or store any of your personal health information.
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="section">
+                <h2>
+                    <i class="fas fa-question-circle"></i>
+                    Frequently Asked Questions
+                </h2>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is my health data secure?</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, absolutely. All your health data is stored locally on your device using iOS security features. The app is protected with PIN and biometric authentication. No data ever leaves your device unless you manually export it.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Can I use this for VA disability claims?</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, the app is specifically designed for VA medical reporting. The PDF exports are professionally formatted and include all the detailed symptom tracking information typically required for VA documentation.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What happens if I lose my device?</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Since data is stored locally, losing your device means losing your data unless you've manually exported backups. We recommend regularly exporting your data as PDF for backup purposes.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Can I share data with my doctor?</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! The app's PDF export feature creates professional reports that you can easily share with healthcare providers. You have complete control over what data you share and when.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is there a subscription or cost?</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Symptom Tracker is designed to be accessible for all users. Check the App Store for current pricing information.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Support Section -->
+            <section class="section">
+                <h2>
+                    <i class="fas fa-life-ring"></i>
+                    Get Support
+                </h2>
+                <p>Need help, have questions, or want to report a bug? We're here to help!</p>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon github">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub Issues</h3>
+                        <p>Report bugs, request features, or ask technical questions</p>
+                        <a href="#" class="btn">Open Issue</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon email">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Support</h3>
+                        <p>Get direct support for app-related questions</p>
+                        <a href="mailto:support@symptomtracker.app" class="btn">Send Email</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon bug">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h3>Bug Reports</h3>
+                        <p>Found a problem? Help us improve the app</p>
+                        <a href="#" class="btn">Report Bug</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- System Requirements -->
+            <section class="section">
+                <h2>
+                    <i class="fas fa-mobile-alt"></i>
+                    System Requirements
+                </h2>
+                <ul class="privacy-points">
+                    <li>iOS 15.0 or later</li>
+                    <li>Compatible with iPhone and iPad</li>
+                    <li>Supports Face ID and Touch ID</li>
+                    <li>Requires device storage for local data</li>
+                    <li>No internet connection required for core functionality</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Symptom Tracker. Built with privacy and security in mind.</p>
+            <p>This app is designed to help manage your health information privately and securely.</p>
+        </footer>
+    </div>
+
+    <script src="support.js"></script>
+</body>
+</html>
