@@ -2834,7 +2834,12 @@ struct HelpView: View {
                     HelpSection(title: "Support", icon: "lifepreserver") {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("For technical support, feature requests, or bug reports:")
-                            Link("Visit our GitHub Support Page", destination: URL(string: "https://yourusername.github.io/symptom-tracker-support")!)
+                            Link("Visit our Support Page", destination: URL(string: "https://stovalldav.github.io/SymptomTrackerSupport/")!)
+                                .foregroundColor(.blue)
+                            
+                            Text("Contact us directly:")
+                                .padding(.top, 8)
+                            Link("symptomtrackerinfo@gmail.com", destination: URL(string: "mailto:symptomtrackerinfo@gmail.com")!)
                                 .foregroundColor(.blue)
                         }
                     }

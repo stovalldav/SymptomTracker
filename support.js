@@ -148,8 +148,8 @@ function handleGitHubIssue(isBugReport = false) {
     const issueTitle = isBugReport ? '[Bug Report] ' : '[Feature Request] ';
     const issueBody = isBugReport ? getBugReportTemplate() : getFeatureRequestTemplate();
     
-    // In a real implementation, you would direct to your GitHub repository
-    const githubURL = `https://github.com/yourusername/symptom-tracker/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
+    // Direct to the actual GitHub repository for issue creation
+    const githubURL = `https://github.com/stovalldav/SymptomTrackerSupport/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
     
     // For now, show a modal with instructions
     showGitHubModal(githubURL, isBugReport);
